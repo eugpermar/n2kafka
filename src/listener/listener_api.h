@@ -48,21 +48,14 @@ typedef struct listener {
 } listener;
 
 /// @todo return 0 to say OK!
-static enum decoder_callback_err
+static inline enum decoder_callback_err
 listener_decode(const struct listener *this,
 		const char *buffer,
 		size_t buf_size,
 		const keyval_list_t *props,
 		const char **response,
 		size_t *response_size,
-		void *session) __attribute__((unused));
-static enum decoder_callback_err listener_decode(const struct listener *this,
-						 const char *buffer,
-						 size_t buf_size,
-						 const keyval_list_t *props,
-						 const char **response,
-						 size_t *response_size,
-						 void *session) {
+		void *session) {
 	return this->decoder->callback(buffer,
 				       buf_size,
 				       props,

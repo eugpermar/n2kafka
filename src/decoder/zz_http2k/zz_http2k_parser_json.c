@@ -41,7 +41,7 @@
 #include <syslog.h>
 
 #define YAJL_PARSER_OK 1
-#define YAJL_PARSER_ABORT 0
+// #define YAJL_PARSER_ABORT 0
 
 //
 // PARSING

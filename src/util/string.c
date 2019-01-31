@@ -46,7 +46,7 @@
 		(__a > __b) ? __a : __b;                                       \
 	})
 
-static size_t __attribute__((unused)) next_pow2(size_t x) {
+static size_t next_pow2(size_t x) {
 	static_assert(sizeof(x) == sizeof(unsigned long),
 		      "Please expand this function!");
 	// bits of size_t

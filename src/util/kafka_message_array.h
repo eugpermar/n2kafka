@@ -66,17 +66,13 @@ static void assert_kafka_message_array_internal(
 	})
 
 /// Cast void pointer to message array internal
-static struct kafka_message_array_internal *
-kafka_message_array_internal_cast(void *opaque) RD_UNUSED;
-static struct kafka_message_array_internal *
+static inline struct kafka_message_array_internal *
 kafka_message_array_internal_cast(void *opaque) {
 	return kafka_message_array_internal_cast0(, opaque);
 }
 
 /// Cast void pointer to message array internal, const version
-static const struct kafka_message_array_internal *
-kafka_message_array_internal_cast_const(void *opaque) RD_UNUSED;
-static const struct kafka_message_array_internal *
+static inline const struct kafka_message_array_internal *
 kafka_message_array_internal_cast_const(void *opaque) {
 	return kafka_message_array_internal_cast0(, opaque);
 }
@@ -96,9 +92,7 @@ typedef struct kafka_message_array {
 /** Return private array
   @note: Internal - Do not use outside this header
   */
-static struct kafka_message_array_internal *
-kafka_message_array_get_internal(kafka_message_array *array) RD_UNUSED;
-static struct kafka_message_array_internal *
+static inline struct kafka_message_array_internal *
 kafka_message_array_get_internal(kafka_message_array *array) {
 	return kafka_message_array_internal_cast(array->str.buf);
 }
@@ -106,17 +100,13 @@ kafka_message_array_get_internal(kafka_message_array *array) {
 /** Return private array
   @note: Internal - Do not use outside this header
   */
-static const struct kafka_message_array_internal *
-kafka_message_array_get_internal_const(
-		const kafka_message_array *array) RD_UNUSED;
-static const struct kafka_message_array_internal *
+static inline const struct kafka_message_array_internal *
 kafka_message_array_get_internal_const(const kafka_message_array *array) {
 	return kafka_message_array_internal_cast_const(array->str.buf);
 }
 
-static size_t kafka_message_array_size(const kafka_message_array *array)
-		__attribute__((unused));
-static size_t kafka_message_array_size(const kafka_message_array *array) {
+static inline size_t
+kafka_message_array_size(const kafka_message_array *array) {
 	assert(array);
 	return string_size(&array->str)
 			       ? kafka_message_array_get_internal_const(array)
@@ -174,14 +164,11 @@ size_t kafka_message_array_produce(rd_kafka_topic_t *topic,
 
 /** Init a message queue
 	@param q Queue */
-static void
-kafka_msg_array_init(kafka_message_array *array) __attribute__((unused));
-static void kafka_msg_array_init(kafka_message_array *array) {
+static inline void kafka_msg_array_init(kafka_message_array *array) {
 	string_init(&array->str);
 }
 
-static void kafka_msg_array_done(kafka_message_array *array) RD_UNUSED;
-static void kafka_msg_array_done(kafka_message_array *array) {
+static inline void kafka_msg_array_done(kafka_message_array *array) {
 	string_done(&array->str);
 }
 
@@ -200,13 +187,5 @@ int kafka_msg_array_add(kafka_message_array *array,
 /** Decrement reference counter in a thread-safe manner
   @param array Kafka messages array
   */
-static void
-kafka_message_array_internal_decref(struct kafka_message_array_internal *karray)
-		__attribute__((unused));
-static void kafka_message_array_internal_decref(
-		struct kafka_message_array_internal *karray) {
-	if (0 == ATOMIC_OP(sub, fetch, &karray->count, 1)) {
-		free(karray->payload_buffer);
-		free(karray);
-	}
-}
+void kafka_message_array_internal_decref(
+		struct kafka_message_array_internal *karray);

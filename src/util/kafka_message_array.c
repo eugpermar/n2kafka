@@ -165,3 +165,11 @@ end:
 	kafka_msg_array_done(array);
 	return msgs_ok;
 }
+
+void kafka_message_array_internal_decref(
+		struct kafka_message_array_internal *karray) {
+	if (0 == ATOMIC_OP(sub, fetch, &karray->count, 1)) {
+		free(karray->payload_buffer);
+		free(karray);
+	}
+}

@@ -36,19 +36,17 @@ typedef struct string {
 	(string) {                                                             \
 	}
 
-static int __attribute__((unused)) string_init(struct string *str) {
+static inline int string_init(struct string *str) {
 	*str = N2K_STRING_INITIALIZER;
 	return 0;
 }
 
-static void string_done(struct string *str) __attribute__((unused));
-static void string_done(struct string *str) {
+static inline void string_done(struct string *str) {
 	free(str->buf);
 	memset(str, 0, sizeof(*str));
 }
 
-static size_t string_size(const string *str) __attribute__((unused));
-static size_t string_size(const string *str) {
+static inline size_t string_size(const string *str) {
 	return str->size;
 }
 
