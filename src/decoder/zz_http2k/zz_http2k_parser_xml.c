@@ -46,13 +46,7 @@
 
 #define NO_JSON_LAST_OPEN_MAP ((ssize_t)-1)
 
-#define YAJL_PARSER_OK 1
-#define YAJL_PARSER_ABORT 0
-
-#define YAJL_MAX_DEPTH_EXCEEDED_STR ""
-
 /// Generate a key in JSON output
-#define yajl_gen_key yajl_gen_string
 #define yajl_gen_string_strlen(h, k)                                           \
 	yajl_gen_string(h, (const unsigned char *)k, strlen((const char *)k))
 #define yajl_gen_key_strlen yajl_gen_string_strlen

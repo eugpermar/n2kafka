@@ -59,8 +59,6 @@ struct n2k_decoder;
 #define N2KAFKA_TCP "tcp"
 #define N2KAFKA_UDP "udp"
 
-#define CONFIG_NUM_THREADS "threads"
-
 enum thread_mode {
 #define STR_MODE_THREAD_PER_CONNECTION "thread_per_connection"
 	MODE_THREAD_PER_CONNECTION,
@@ -93,7 +91,6 @@ static enum thread_mode thread_mode_str(const char *mode_str) {
 }
 
 #define READ_BUFFER_SIZE 4096
-static const struct timeval READ_SELECT_TIMEVAL = {.tv_sec = 20, .tv_usec = 0};
 static const struct timeval WRITE_SELECT_TIMEVAL = {.tv_sec = 5, .tv_usec = 0};
 
 /// @TODO this can't be global, it produces a race condition!

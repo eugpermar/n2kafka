@@ -282,6 +282,28 @@ function checks {
     cc_check_flag HAVE_CC_LOGICAL_OP '-Wlogical-op'
     cc_check_flag HAVE_CC_FORMAT_SIGNEDNESS '-Wformat-signedness'
     cc_check_flag HAVE_CC_FORMAT_TRUNCATION '-Wformat-truncation=2'
+    cc_check_flag HAVE_CC_WLOGICAL_OP '-Wlogical-op'
+    cc_check_flag HAVE_CC_WFORMAT_SIGNEDNESS '-Wformat-signedness'
+    cc_check_flag HAVE_CC_WFORMAT_TRUNCATION '-Wformat-truncation=2'
+    cc_check_flag HAVE_CC_WARRAY_BOUNDS_PTR_ARITH '-Warray-bounds-pointer-arithmetic'
+    cc_check_flag HAVE_CC_WASSIGN_ENUM '-Wassign-enum'
+    cc_check_flag HAVE_CC_WBAD_FUNCTION_CAST '-Wbad-function-cast'
+    cc_check_flag HAVE_CC_WCONDITIONAL_UNINITIALIZED '-Wconditional-uninitialized'
+    cc_check_flag HAVE_CC_WDEPRECATED '-Wdeprecated'
+    cc_check_flag HAVE_CC_WDUPLICATE_ENUM '-Wduplicate-enum'
+    cc_check_flag HAVE_CC_WIMPLICIT_ATOMIC_PROPERTIES '-Wimplicit-atomic-properties'
+    cc_check_flag HAVE_CC_WMISSING_NORETURN '-Wmissing-noreturn'
+    cc_check_flag HAVE_CC_WSELF_ASSIGN '-Wself-assign'
+    cc_check_flag HAVE_CC_WSWITCH_ENUM '-Wswitch-enum'
+    cc_check_flag HAVE_CC_WTAUTOLOGICAL_COMPARE '-Wtautological-compare'
+    cc_check_flag HAVE_CC_WTAUTOLOGICAL_CIR_COMPARE '-Wtautological-constant-in-range-compare'
+    cc_check_flag HAVE_CC_WUNNEEDED_INTERNAL_DECLARATION '-Wunneeded-internal-declaration'
+    cc_check_flag HAVE_CC_WUNREACHABLE_CODE_AGGRESSIVE '-Wunreachable-code-aggressive'
+    cc_check_flag HAVE_CC_WUNREACHABLE_CODE_LOOP_INCREMENT '-Wunreachable-code-loop-increment'
+    cc_check_flag HAVE_CC_WUNUSED_CONST_VARIABLE '-Wunused-const-variable'
+    cc_check_flag HAVE_CC_WUNUSED_MACROS '-Wunused-macros'
+    cc_check_flag HAVE_CC_WUSED_BUT_MARKED_UNUSED '-Wused-but-marked-unused'
+
 
     if [[ "$ENABLE_ASSERTIONS" != 'y' ]]; then
       mkl_mkvar_append CPPFLAGS CPPFLAGS "-DNDEBUG"
